@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link th:rel="icon" sizes="76x76" th:href="@{/assets/img/logo2x.png}">
+    <link th:rel="icon" type="image/png" th:href="@{/assets/img/logo2x.png}">
+    <title>
+        Furama Resort Da Nang
+    </title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+    <!-- Nucleo Icons -->
+    <link th:href="@{/assets/css/nucleo-icons.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/css/nucleo-svg.css}" rel="stylesheet"/>
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link th:href="@{/assets/css/nucleo-svg.css}" rel="stylesheet"/>
+    <!-- CSS Files -->
+    <link th:rel="stylesheet" th:href="@{/assets/css/soft-ui-dashboard-pro.css}">
+
+<body class="g-sidenav-show  bg-gray-100">
+<div th:replace="~{employee/asideAndFooter::asideEmployee}"></div>
+<main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
+         navbar-scroll="true">
+        <div class="container-fluid py-1 px-3">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                    <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a>
+                    </li>
+                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Employee</li>
+                </ol>
+                <h6 class="font-weight-bolder mb-0">Add new Employee</h6>
+            </nav>
+            <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                    <ul th:replace="~{home/profile::userInfo}"></ul>
+
+                </div>
+
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-header pb-0">
+                        <h6>Employee Information</h6>
+                        <p th:if="${message}" th:text="${message}" class="text-success"></p>
+                    </div>
+                    <form class="row g-3 needs-validation m-3" th:action="@{/employees/create}" method="post" th:object="${employee}">
+                        <div class="col-md-4 position-relative">
+                            <label for="validationTooltip01" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="validationTooltip01"
+                                   required th:value="${employee.getName()}"
+                                   th:field="*{name}">
+                        </div>
+                        <div class="col-md-2 position-relative">
+                            <label for="validationTooltip02" class="form-label">Date of Birth</label>
+                            <input type="date" class="form-control" id="validationTooltip02"
+                                   required th:value="${employee.getBirthday()}"
+                                   th:field="*{birthday}">
+                        </div>
+                        <div class="col-md-2 position-relative">
+                            <label for="validationTooltip03" class="form-label">Gender</label>
+                            <select class="form-select" th:field="*{gender}" name="gender" id="validationTooltip03" required>
+                                <option th:value="Male" >Male</option>
+                                <option th:value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 position-relative">
+                            <label for="validationTooltip04" class="form-label">Personal ID</label>
+                            <input type="text" class="form-control"
+                                   id="validationTooltip04" required th:value="${employee.getPersonalID()}"
+                                   th:field="*{personalID}">
+                            <div class="text-danger" style="font-size: 70%" th:if="${#fields.hasErrors('personalID')}" th:errors="*{personalID}"></div>
+                        </div>
+                        <div class="col-md-2 position-relative">
+                            <label for="validationTooltip05" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control"
+                                   id="validationTooltip05" required th:value="${employee.getPhoneNumber()}"
+                                   th:field="*{phoneNumber}">
+                            <div class="text-danger" style="font-size: 70%" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
+
+                        </div>
+                        <div class="col-md-4 position-relative">
+                            <label for="validationTooltip06" class="form-label">Address</label>
+                            <input type="text" class="form-control"  id="validationTooltip06"
+                                   required th:value="${employee.getAddress()}"
+                                   th:field="*{address}">
+                        </div>
+                        <div class="col-md-2 position-relative">
+                            <label for="validationTooltip07" class="form-label">Degree</label>
+                            <select class="form-select" name="employeeDegree" id="validationTooltip07" required>
+                                <th:block th:each="degree: ${degrees}">
+                                    <option th:value="${degree.getId()}" th:text="${degree.getName()}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="col-md-2 position-relative">
+                            <label for="validationTooltip08" class="form-label">Office</label>
+                            <select class="form-select" name="employeeOffice" id="validationTooltip08" required>
+                                <th:block th:each="office: ${offices}">
+                                    <option th:value="${office.getId()}" th:text="${office.getName()}"></option>
+                                </th:block>
+                            </select>
+
+                        </div>
+                        <div class="col-md-2 position-relative">
+                            <label for="validationTooltip09" class="form-label">Department</label>
+                            <select class="form-select" name="employeeDepartment" id="validationTooltip09" required>
+                                <th:block th:each="department:${departments}">
+                                    <option th:value="${department.getId()}" th:text="${department.getName()}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="col-md-2 position-relative">
+                            <label for="validationTooltip10" class="form-label">Salary</label>
+                            <input type="text" class="form-control" name="input-salary" id="validationTooltip10"
+                                   required
+                                   th:field="*{salary}">
+                            <div class="text-danger" style="font-size: 70%" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></div>
+                        </div>
+                        <div class="col-md-3 position-relative">
+                            <label for="validationTooltip11" class="form-label">Email</label>
+                            <input type="text" class="form-control" name="input-email" id="validationTooltip11"
+                                   required th:value="${employee.getSalary()}"
+                                   th:field="*{email}">
+                            <div class="text-danger" style="font-size: 70%" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link th:rel="icon" sizes="76x76" th:href="@{/assets/img/logo2x.png}">
+    <link th:rel="icon" type="image/png" th:href="@{/assets/img/logo2x.png}">
+    <title>
+        Furama Resort Da Nang
+    </title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+    <!-- Nucleo Icons -->
+    <link th:href="@{/assets/css/nucleo-icons.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/css/nucleo-svg.css}" rel="stylesheet"/>
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link th:href="@{/assets/css/nucleo-svg.css}" rel="stylesheet"/>
+    <!-- CSS Files -->
+    <link th:rel="stylesheet" th:href="@{/assets/css/soft-ui-dashboard-pro.css}">
+
+<body class="g-sidenav-show  bg-gray-100">
+<div th:replace="~{contract/asideAndFooter::asideContract}"></div>
+<main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
+         navbar-scroll="true">
+        <div class="container-fluid py-1 px-3">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                    <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a>
+                    </li>
+                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Contract</li>
+                </ol>
+                <h6 class="font-weight-bolder mb-0">Create Contract</h6>
+            </nav>
+            <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                    <ul th:replace="~{home/profile::userInfo}"></ul>
+
+                </div>
+
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-header pb-0">
+                        <h6>Contract Information</h6>
+                        <p th:if="${message}" th:text="${message}" class="text-success"></p>
+                    </div>
+                    <form class="row g-3 needs-validation m-3" th:action="@{/contracts/create}" method="post" th:object="${contract}">
+                        <div class="col-md-2 position-relative">
+                            <label for="validationTooltip01" class="form-label">Check In Date</label>
+                            <input type="date" class="form-control" id="validationTooltip01"
+                                   required
+                                   th:field="*{checkInDate}">
+                            <div class="text-danger" style="font-size: 70%" th:if="${#fields.hasErrors('checkInDate')}" th:errors="*{checkInDate}"></div>
+                        </div>
+                        <div class="col-md-2 position-relative">
+                            <label for="validationTooltip02" class="form-label">Check Out Date</label>
+                            <input type="date" class="form-control" id="validationTooltip02"
+                                   required th:field="*{checkOutDate}">
+                            <div class="text-danger" style="font-size: 70%" th:if="${#fields.hasErrors('checkOutDate')}" th:errors="*{checkOutDate}"></div>
+
+                        </div>
+                        <div class="col-md-4 position-relative">
+                            <label for="validationTooltip03" class="form-label">Employee</label>
+                            <select class="form-select" name="employee" id="validationTooltip03" required>
+                                <th:block th:each="employee: ${employees}">
+                                    <option th:value="${employee.getId()}" th:text="${employee.getName()} +  '-' + ${employee.getId()}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="col-md-4 position-relative">
+                            <label for="validationTooltip07" class="form-label">Customer</label>
+                            <select class="form-select" name="customer" id="validationTooltip07" required>
+                                <th:block th:each="customer: ${customers}">
+                                    <option th:value="${customer.getId()}" th:text="${customer.getName()} +  '-' + ${customer.getId()}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="col-md-4 position-relative">
+                            <label for="validationTooltip08" class="form-label">Facility</label>
+                            <select class="form-select" name="facility" id="validationTooltip08" required>
+                                <th:block th:each="facility: ${facilities}">
+                                    <option th:value="${facility.getId()}" th:text="${facility.getName()} +  '-' + ${facility.getId()}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <div class="col-md-3 position-relative">
+                            <label for="validationTooltip11" class="form-label">Deposit</label>
+                            <input type="text" class="form-control" id="validationTooltip11"
+                                   required
+                                   th:field="*{deposit}">
+                            <div class="text-danger" style="font-size: 70%" th:if="${#fields.hasErrors('deposit')}" th:errors="*{deposit}"></div>
+                        </div>
+                        <div class="col-md-3 position-relative">
+                            <label for="validationTooltip12" class="form-label">Total</label>
+                            <input type="text" class="form-control" id="validationTooltip12"
+                                   required
+                                   th:field="*{total}">
+                            <div class="text-danger" style="font-size: 70%" th:if="${#fields.hasErrors('total')}" th:errors="*{total}"></div>
+                        </div>
+
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div th:replace="~{contract/asideAndFooter::footer}"></div>
+    </div>
+</main>
+</body>
+</html>

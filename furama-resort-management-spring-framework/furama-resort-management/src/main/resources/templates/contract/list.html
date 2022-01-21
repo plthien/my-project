@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link th:rel="icon" sizes="76x76" th:href="@{/assets/img/logo2x.png}">
+    <link th:rel="icon" type="image/png" th:href="@{/assets/img/logo2x.png}">
+    <title>
+        Furama Resort Da Nang
+    </title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+    <!-- Nucleo Icons -->
+    <link th:href="@{/assets/css/nucleo-icons.css}" rel="stylesheet"/>
+    <link th:href="@{/assets/css/nucleo-svg.css}" rel="stylesheet"/>
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link th:href="@{/assets/css/nucleo-svg.css}" rel="stylesheet"/>
+    <!-- CSS Files -->
+    <link th:rel="stylesheet" th:href="@{/assets/css/soft-ui-dashboard-pro.css}">
+</head>
+<body class="g-sidenav-show  bg-gray-100">
+<div th:replace="~{contract/asideAndFooter::asideContract}"></div>
+
+<main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
+         navbar-scroll="true">
+        <div class="container-fluid py-1 px-3">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                    <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a>
+                    </li>
+                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Contract</li>
+                </ol>
+                <h6 class="font-weight-bolder mb-0">Contract List</h6>
+            </nav>
+            <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                    <form class="input-group m-0">
+                        <input id="searchContract" th:name="keyword" th:value="${keyword}" type="text"
+                               class="form-control " style="width: 310px"
+                               placeholder="Type ID or Name of Customer">
+                        <button id="buttonSearch" type="submit" class="input-group-text text-body"><i
+                                class="fas fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+                <ul th:replace="~{home/profile::userInfo}"></ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="container-fluid">
+        <div class="row mb-3">
+            <div class="col-2">
+                <form>
+                    <label for="searchDate" class="form-label" >Filter with Date:</label>
+                    <input type="date" class="form-control" id="searchDate" onchange="this.form.submit()"
+                           th:name="dateSearch" th:value="${dateSearch}">
+                </form>
+
+            </div>
+            <div class="col-10 text-end ">
+                <a th:href="@{/contracts/create}"
+                   class="text-secondary mb-0 font-weight-bold text-xs badge badge-sm bg-gradient-light">
+                    Add new Contract
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-4">
+                    <div class="card-header pb-0">
+                        <h6>Contract table</h6>
+                        <p th:if="${message}" th:text="${message}" style="font-size: 80%" class="text-success"></p>
+                    </div>
+                    <div class="card-body px-0 pt-0 pb-2">
+                        <div class="table-responsive p-0">
+                            <table class="table align-items-center mb-0 " id="employeeTable">
+                                <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder px-2 ">
+                                        <a th:href="@{/contracts(page=${contracts.number}, sortField='id',sortDirection=${reverseSortDir},keyword=${keyword},dateSearch=${dateSearch})}">
+                                            ID</a>
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder px-0">
+                                        <a th:href="@{/contracts(page=${contracts.number}, sortField='checkInDate',sortDirection=${reverseSortDir},keyword=${keyword},dateSearch=${dateSearch})}">
+                                            Check In Date </a>
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder  px-0">
+                                        <a th:href="@{/contracts(page=${contracts.number}, sortField='checkOutDate',sortDirection=${reverseSortDir},keyword=${keyword},dateSearch=${dateSearch})}">
+                                            Check Out Date</a>
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder  px-0">
+                                        Employee
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder  px-0">
+                                        Customer
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder px-0 ">
+                                        Facility
+                                    </th>
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder px-0 ">
+                                        Contract Details
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder px-0 text-center ">
+                                        Deposit
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder px-0 text-center">
+                                        Total
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center px-0">
+                                        Action
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="contract  : ${contracts.content}">
+                                    <td class="align-middle px-2 ">
+                                        <span class="text-secondary text-xs font-weight-bold"
+                                              th:text="${contract.getId()}"></span>
+                                    </td>
+                                    <td class="align-middle px-0 ">
+                                        <span class="text-secondary text-xs font-weight-bold"
+                                              th:text="${contract.getCheckInDate()}"></span>
+                                    </td>
+                                    <td class="align-middle px-0 ">
+                                        <span class="text-secondary text-xs font-weight-bold"
+                                              th:text="${contract.getCheckOutDate()}"></span>
+                                    </td>
+                                    <td class="align-middle px-0  ">
+                                        <div class="d-flex py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm"
+                                                    th:text="${contract.getEmployee().getName()}"></h6>
+                                                <p class="text-xs text-secondary mb-0"
+                                                   th:text="${contract.getEmployee().getId()}"></p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle px-0 ">
+                                        <div class="d-flex py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm"
+                                                    th:text="${contract.getCustomer().getName()}"></h6>
+                                                <p class="text-xs text-secondary mb-0"
+                                                   th:text="${contract.getCustomer().getId()}"></p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle px-0 ">
+                                        <div class="d-flex py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm"
+                                                    th:text="${contract.getFacility().getName()}"></h6>
+                                                <p class="text-xs text-secondary mb-0"
+                                                   th:text="${contract.getFacility().getId()}"></p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle px-0  text-center">
+                                        <th:block class="text-secondary text-xs font-weight-bold"
+                                                  th:each="contractDetail: ${contractDetails}">
+                                            <p style="font-size: 70%"
+                                                    th:if="${contractDetail.getContract().getId() == contract.getId()}"><a
+                                                    th:href="@{/contracts/contractDetails{id}(id=${contractDetail.getId()})}"
+                                                    th:text="${contractDetail.getId()}"></a></p>
+                                        </th:block>
+                                    </td>
+                                    <td class="align-middle py-0  text-center ">
+                                        <span class="text-secondary text-xs font-weight-bold"
+                                              th:text="${contract.getDeposit()}"></span>
+                                    </td>
+                                    <td class="align-middle px-0  text-center ">
+                                        <span class="text-secondary text-xs font-weight-bold"
+                                              th:text="${contract.getTotal()}"></span>
+                                    </td>
+                                    <td class="align-middle px-0 text-center">
+                                        <a th:href="@{/contracts/createContractDetails{id}(id=${contract.getId()})}"
+                                           class="btn bg-gradient-success mt-1" >
+                                            Add
+                                        </a>
+                                        <a th:href="@{/contracts/edit{id}(id=${contract.getId()})}"
+                                           class="btn bg-gradient-success" >
+                                            Edit
+                                        </a>
+                                        <button type="button" class="btn bg-gradient-danger  " data-bs-toggle="modal"
+                                                th:data-bs-target="'#modal' + ${contract.getId()} ">
+                                            Delete
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" th:id="'modal' + ${contract.getId()} " tabindex="-1"
+                                             role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title font-weight-normal"
+                                                            id="exampleModalLabel">Delete confirm</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Do you want to delete contract have ID: <span
+                                                            th:text="${contract.getId()}"></span> ?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn bg-gradient-success"
+                                                                data-bs-dismiss="modal">No
+                                                        </button>
+                                                        <button type="button" class="btn bg-gradient-danger"><a
+                                                                th:href="@{/contracts/delete{id}(id=${contract.getId()})}">Yes</a>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <!--                            pagination-->
+                            <nav aria-label="Page navigation example" class="float-end mx-2   ">
+                                <ul class="pagination ">
+                                    <li class="page-item"><a class="page-link" th:if="${contracts.hasPrevious()}"
+                                                             th:href="@{/contracts(page=${contracts.number - 1},sortField=${sortField},sortDirection=${sortDirection},keyword=${keyword},dateSearch=${dateSearch})}"><i
+                                            class="fas fa-backward"></i></a></li>
+                                    <li class="page-item" th:if="${contracts.totalPages!=0}"
+                                        th:each="pageNo: ${#numbers.sequence(1,contracts.totalPages)}">
+                                        <a class="page-link" th:text="${pageNo}" th:style="${contracts.number == (pageNo - 1)} ? 'background-color: #e5e5e5'"
+                                           th:href="@{contracts(page=${pageNo - 1},sortField=${sortField},sortDirection=${sortDirection},keyword=${keyword},dateSearch=${dateSearch})}"></a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" th:if="${contracts.hasNext()}"
+                                                             th:href="@{/contracts(page=${contracts.number + 1},sortField=${sortField},sortDirection=${sortDirection},keyword=${keyword},dateSearch=${dateSearch})}"><i
+                                            class="fas fa-forward"></i></a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:replace="~{contract/asideAndFooter::footer}"></div>
+    </div>
+
+</main>
+<script>
+    var inputSearch = document.getElementById("searchContract");
+    inputSearch.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("buttonSearch").click();
+        }
+    });
+</script>
+</body>
+<script th:src="@{/assets/js/core/bootstrap.min.js}"></script>
+</html>
