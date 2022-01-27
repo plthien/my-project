@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-header">
+    <h2>Delete Confirmation</h2>
+  </div>
+  <div class="card-body">
+    <p class="card-text">Are you sure to delete The employee has name is
+      <span class="fw-bold">{{data.employee.name}}</span> and ID is <span class="fw-bold">{{data.employee.id}}</span> </p>
+  </div>
+  <div class="d-flex justify-content-end mt-5">
+    <button mat-dialog-close class="btn btn-warning mx-1">Cancel</button>
+    <button class="btn btn-danger" (click)="delete(data.employee.id)">Delete</button>
+  </div>
+</div>

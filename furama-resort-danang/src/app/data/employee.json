@@ -1,0 +1,273 @@
+{
+  "employee": [
+    {
+      "id": 4,
+      "name": "hung",
+      "dateOfBirth": "1998-12-05",
+      "gender": "Male",
+      "personalID": "201710998",
+      "phoneNumber": "0908123456",
+      "email": "hung@gmail.com",
+      "address": "Da Nang",
+      "salary": 2000,
+      "employeeDegree": {
+        "id": 1,
+        "name": "Intermediate"
+      },
+      "employeeOffice": {
+        "id": 1,
+        "name": "Receptionist"
+      },
+      "employeeDepartment": {
+        "id": 2,
+        "name": "Service"
+      }
+    },
+    {
+      "id": 5,
+      "name": "hung",
+      "dateOfBirth": "1992-11-01",
+      "gender": "Male",
+      "personalID": "201710998",
+      "phoneNumber": "0908123456",
+      "email": "hung@gmail.com",
+      "address": "Da Nang",
+      "salary": 2000,
+      "employeeDegree": {
+        "id": 1,
+        "name": "Intermediate"
+      },
+      "employeeOffice": {
+        "id": 1,
+        "name": "Receptionist"
+      },
+      "employeeDepartment": {
+        "id": 2,
+        "name": "Service"
+      }
+    },
+    {
+      "name": "thanh hien",
+      "dateOfBirth": "2000-12-28",
+      "gender": "Male",
+      "personalID": "2017109919",
+      "phoneNumber": "0794197483",
+      "address": "Da Nang",
+      "employeeDegree": {
+        "id": 3,
+        "name": "University"
+      },
+      "employeeOffice": {
+        "id": 5,
+        "name": "Manager"
+      },
+      "employeeDepartment": {
+        "id": 4,
+        "name": "Management"
+      },
+      "salary": "5000.0",
+      "email": "plthienbkdn@gmail.com",
+      "id": 6
+    },
+    {
+      "name": "quang nghia",
+      "dateOfBirth": "2001-12-22",
+      "gender": "Male",
+      "personalID": "2017109999",
+      "phoneNumber": "0794197483",
+      "address": "Da Nang",
+      "employeeDegree": {
+        "id": 1,
+        "name": "Intermediate"
+      },
+      "employeeOffice": {
+        "id": 2,
+        "name": "Staff"
+      },
+      "employeeDepartment": {
+        "id": 2,
+        "name": "Service"
+      },
+      "salary": "3000.0",
+      "email": "plthienbkdn@gmail.com",
+      "id": 7
+    },
+    {
+      "name": "quang nghia",
+      "dateOfBirth": "2002-12-09",
+      "gender": "Female",
+      "personalID": "2017105431",
+      "phoneNumber": "0794197483",
+      "address": "Da Nang",
+      "employeeDegree": {
+        "id": 4,
+        "name": "PostGraduate"
+      },
+      "employeeOffice": {
+        "id": 6,
+        "name": "Director"
+      },
+      "employeeDepartment": {
+        "id": 4,
+        "name": "Management"
+      },
+      "salary": "5000.0",
+      "email": "plthienbkdn@gmail.com",
+      "id": 8
+    },
+    {
+      "id": 9,
+      "name": "Nguyen Thanh Tung",
+      "dateOfBirth": "1990-12-21",
+      "gender": "Male",
+      "personalID": "201710999911",
+      "phoneNumber": "+84905123564",
+      "address": "Da Nang",
+      "employeeDegree": {
+        "id": 1,
+        "name": "Intermediate"
+      },
+      "employeeOffice": {
+        "id": 2,
+        "name": "Staff"
+      },
+      "employeeDepartment": {
+        "id": 2,
+        "name": "Service"
+      },
+      "salary": "200",
+      "email": "tung123@gmail.com"
+    },
+    {
+      "name": "hoa",
+      "dateOfBirth": "2001-12-08",
+      "gender": "Female",
+      "personalID": "2017109919",
+      "phoneNumber": "0794197483",
+      "address": "Da Nang",
+      "employeeDegree": {
+        "id": 2,
+        "name": "college"
+      },
+      "employeeOffice": {
+        "id": 2,
+        "name": "Staff"
+      },
+      "employeeDepartment": {
+        "id": 1,
+        "name": "Sale-Marketing"
+      },
+      "salary": "3000.0",
+      "email": "plthienbkdn@gmail.com",
+      "id": 10
+    },
+    {
+      "name": "Nguyen Van Son",
+      "dateOfBirth": "1989-01-28",
+      "gender": "Male",
+      "personalID": "201710999",
+      "phoneNumber": "+84123456789",
+      "address": "Ha Noi",
+      "employeeDegree": {
+        "id": 3,
+        "name": "University"
+      },
+      "employeeOffice": {
+        "id": 5,
+        "name": "Manager"
+      },
+      "employeeDepartment": {
+        "id": 4,
+        "name": "Management"
+      },
+      "salary": "3000.0",
+      "email": "son@gmail.com",
+      "id": 11
+    },
+    {
+      "name": "Le Quynh Tram",
+      "dateOfBirth": "1994-06-28",
+      "gender": "Female",
+      "personalID": "201710376",
+      "phoneNumber": "+84987234111",
+      "address": "Quang Tri",
+      "employeeDegree": {
+        "id": 3,
+        "name": "University"
+      },
+      "employeeOffice": {
+        "id": 5,
+        "name": "Manager"
+      },
+      "employeeDepartment": {
+        "id": 1,
+        "name": "Sale-Marketing"
+      },
+      "salary": "3000.0",
+      "email": "tram234@gmail.com",
+      "id": 12
+    }
+  ],
+  "employeeDegree": [
+    {
+      "id": 1,
+      "name": "Intermediate"
+    },
+    {
+      "id": 2,
+      "name": "college"
+    },
+    {
+      "id": 3,
+      "name": "University"
+    },
+    {
+      "id": 4,
+      "name": "PostGraduate"
+    }
+  ],
+  "employeeDepartment": [
+    {
+      "id": 1,
+      "name": "Sale-Marketing"
+    },
+    {
+      "id": 2,
+      "name": "Service"
+    },
+    {
+      "id": 3,
+      "name": "administrative"
+    },
+    {
+      "id": 4,
+      "name": "Management"
+    }
+  ],
+  "employeeOffice": [
+    {
+      "id": 1,
+      "name": "Receptionist"
+    },
+    {
+      "id": 2,
+      "name": "Staff"
+    },
+    {
+      "id": 3,
+      "name": "Expert"
+    },
+    {
+      "id": 4,
+      "name": "Supervisor"
+    },
+    {
+      "id": 5,
+      "name": "Manager"
+    },
+    {
+      "id": 6,
+      "name": "Director"
+    }
+  ]
+}

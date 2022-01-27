@@ -1,0 +1,104 @@
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-4">
+        <div class="card-header pb-0">
+          <h2>Employee Information</h2>
+          <p  class="text-success"></p>
+        </div>
+        <form class="row g-3 needs-validation m-3" [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+          <div class="col-md-4 position-relative">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name"  formControlName="name">
+            <small *ngIf="employeeForm.get('name').touched && employeeForm.get('name').errors?.required"
+                   class="text-warning fst-italic">Please fill out this field!</small>
+          </div>
+          <div class="col-md-2 position-relative">
+            <label for="dateOfBirth" class="form-label">Date of Birth</label>
+            <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" formControlName="dateOfBirth">
+            <small *ngIf="employeeForm.get('dateOfBirth').touched && employeeForm.get('dateOfBirth').errors?.required"
+                   class="text-warning fst-italic">Please fill out this field!</small>
+            <small *ngIf="employeeForm.get('dateOfBirth').dirty && employeeForm.errors?.dateofbirthmorethan18"
+                   class="text-warning fst-italic">The Date of Birth must be than 18!</small>
+          </div>
+          <div class="col-md-2 position-relative">
+            <label for="gender" class="form-label">Gender</label>
+            <select class="form-select" name="gender" id="gender" name="gender" formControlName="gender">
+              <option value="Male" >Male</option>
+              <option value="Female">Female</option>
+            </select>
+            <small *ngIf="employeeForm.get('gender').touched && employeeForm.get('gender').errors?.required"
+                   class="text-warning fst-italic">Please fill out this field!</small>
+          </div>
+          <div class="col-md-2 position-relative">
+            <label for="personalID" class="form-label">Personal ID</label>
+            <input type="text" class="form-control" id="personalID" name="personalID" formControlName="personalID">
+            <small *ngIf="employeeForm.get('personalID').touched && employeeForm.get('personalID').errors?.required"
+                   class="text-warning fst-italic">Please fill out this field!</small>
+            <small *ngIf="employeeForm.get('personalID').dirty && employeeForm.get('personalID').errors?.pattern"
+                   class="text-warning fst-italic">Personal ID should be 9 or 12 digit number!</small>
+          </div>
+          <div class="col-md-2 position-relative">
+            <label for="phoneNumber" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" formControlName="phoneNumber">
+            <small *ngIf="employeeForm.get('phoneNumber').touched && employeeForm.get('phoneNumber').errors?.required"
+                   class="text-warning fst-italic">Please fill out this field!</small>
+            <small *ngIf="employeeForm.get('phoneNumber').dirty && employeeForm.get('phoneNumber').errors?.pattern"
+                   class="text-warning fst-italic"> The phone number must start with +84 and have 9 or 10 digits number!</small>
+
+          </div>
+          <div class="col-md-4 position-relative">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control"  id="address" name="address" formControlName="address">
+            <small *ngIf="employeeForm.get('address').touched && employeeForm.get('address').errors?.required"
+                   class="text-warning fst-italic">Please fill out this field!</small>
+          </div>
+          <div class="col-md-2 position-relative">
+            <label for="employeeDegree" class="form-label">Degree</label>
+            <select class="form-select" name="employeeDegree" id="employeeDegree" formControlName="employeeDegree">
+                <option *ngFor="let degree of employeeDegree" [ngValue]="degree">{{degree.name}}</option>
+            </select>
+            <small *ngIf="employeeForm.get('employeeDegree').touched && employeeForm.get('employeeDegree').errors?.required"
+                   class="text-warning fst-italic">Please fill out this field!</small>
+          </div>
+          <div class="col-md-2 position-relative">
+            <label for="employeeOffice" class="form-label">Office</label>
+            <select class="form-select" name="employeeOffice" id="employeeOffice" formControlName="employeeOffice">
+                <option *ngFor="let office of employeeOffice" [ngValue]="office">{{office.name}}</option>
+            </select>
+            <small *ngIf="employeeForm.get('employeeOffice').touched && employeeForm.get('employeeOffice').errors?.required"
+                   class="text-warning fst-italic">Please fill out this field!</small>
+          </div>
+          <div class="col-md-2 position-relative">
+            <label for="employeeDepartment" class="form-label">Department</label>
+            <select class="form-select" name="employeeDepartment" id="employeeDepartment" formControlName="employeeDepartment">
+                <option *ngFor="let department of employeeDepartment" [ngValue]="department">{{department.name}}</option>
+            </select>
+            <small *ngIf="employeeForm.get('employeeDepartment').touched && employeeForm.get('employeeDepartment').errors?.required"
+                   class="text-warning fst-italic">Please fill out this field!</small>
+          </div>
+          <div class="col-md-2 position-relative">
+            <label for="salary" class="form-label">Salary</label>
+            <input type="text" class="form-control" name="salary" id="salary" formControlName="salary">
+            <small *ngIf="employeeForm.get('salary').touched && employeeForm.get('salary').errors?.required"
+                   class="text-warning fst-italic">Please fill out this field!</small>
+            <small *ngIf="employeeForm.get('salary').dirty && employeeForm.get('salary').errors?.min"
+                   class="text-warning fst-italic">The salary must be more than 0!</small>
+          </div>
+          <div class="col-md-3 position-relative">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" class="form-control" name="email" id="email" formControlName="email">
+            <small *ngIf="employeeForm.get('email').touched && employeeForm.get('email').errors?.required"
+                   class="text-warning fst-italic">Please fill out this field!</small>
+            <small *ngIf="employeeForm.get('email').dirty && employeeForm.get('email').errors?.email"
+                   class="text-warning fst-italic">"Valid email only contain latin letters, numbers, '@' and '.' ! "!</small>
+          </div>
+          <div class="col-12 text-end">
+            <button class="btn btn-primary" type="submit" [disabled]="employeeForm.invalid">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+<div class="container-fluid mx-3">
+  <div class="row mb-3 ">
+    <div class="col-4">
+      <div class="input-group m-0">
+        <input id="searchEmployee" name="keyword" type="text" [(ngModel)]="keyword" (ngModelChange)="searchEmployee()"
+               class="form-control " placeholder="Type name">
+      </div>
+    </div>
+    <div class="col-8 text-end">
+      <span *ngIf="mess" class="text-success fst-italic mx-2">{{mess}}</span>
+      <a [routerLink]="['/employee/create']"
+         class="btn btn-success font-weight-bold">
+        Add new Employee
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header bg-primary">
+          <h2>Employee List</h2>
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th><a (click)="sort('id')" class="cursor-pointer text-decoration-none">ID</a></th>
+              <th><a (click)="sort('name')" class="cursor-pointer text-decoration-none" >Name</a></th>
+              <th class="text-center"><a (click)="sort('dateOfBirth')" class="cursor-pointer text-decoration-none">Date of birth</a></th>
+              <th class="text-center"><a (click)="sort('personalID')" class="cursor-pointer text-decoration-none">Personal ID</a></th>
+              <th class="text-center"><a (click)="sort('phoneNumber')" class="cursor-pointer text-decoration-none">Phone Number</a></th>
+              <th class="text-center"><a (click)="sort('address')" class="cursor-pointer text-decoration-none">Address</a></th>
+              <th class="text-center"><a (click)="sort('salary')" class="cursor-pointer text-decoration-none">Salary</a></th>
+              <th class="text-center text-primary">Employee Degree</th>
+              <th class="text-primary">Function</th>
+              <th class="text-center text-primary">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let employee of employees | paginate: { itemsPerPage: 5, currentPage: page }">
+              <td class="align-middle">{{employee.id}}</td>
+              <td class="justify-content-center">
+                <h2>{{employee.name}}</h2>
+                <p>{{employee.email}}</p>
+              </td>
+              <td class="text-center align-middle ">{{employee.dateOfBirth}}</td>
+              <td class="text-center align-middle">{{employee.personalID}}</td>
+              <td class="text-center align-middle">{{employee.phoneNumber}}</td>
+              <td class="text-center align-middle">{{employee.address}}</td>
+              <td class="text-center align-middle">{{employee.salary}}</td>
+              <td class="text-center align-middle">{{employee.employeeDegree.name}}</td>
+              <td>
+                <p>{{employee.employeeDepartment.name}}</p>
+                <h5>{{employee.employeeOffice.name}}</h5>
+              </td>
+              <td class="align-middle text-center">
+                <button class="btn btn-success" [routerLink]="['/employee/edit',employee.id]">Edit</button>
+                <button type="button" class="btn btn-primary mx-1" (click)="openDialog(employee.id)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <pagination-controls (pageChange)="page = $event" class="d-flex justify-content-end"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
